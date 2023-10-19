@@ -5,10 +5,10 @@ jobs:
   dump_contexts_to_log:
     runs-on: ubuntu-latest
     steps:
-      - name: Dump GitHub context
+      - name: Dump GitHub status
         env:
-          GITHUB_CONTEXT: ${{ toJson(github.job) }}
-        run: echo "$GITHUB_CONTEXT"
+          JOB_CONTEXT: ${{ toJson(job.status) }}
+        run: echo "$JOB_CONTEXT"
       # - name: Dump job context
       #   env:
       #     JOB_CONTEXT: ${{ toJson(job) }}
