@@ -1,31 +1,20 @@
-name: Context testing
-on: push
+name: Greeting on variable day
+
+on:
+  push:
+    branches:
+      - master
+
+env:
+  DAY_OF_WEEK: Monday
 
 jobs:
-  dump_contexts_to_log:
+  greeting_job:
     runs-on: ubuntu-latest
+    env:
+      Greeting: Hello
     steps:
-      - name: Dump GitHub status
+      - name: "Say Hello Mona it's Monday"
+        run: echo "$Greeting $First_Name. Today is $DAY_OF_WEEK!"
         env:
-          JOB_CONTEXT: ${{ toJson(job.status) }}
-        run: echo "$JOB_CONTEXT"
-      # - name: Dump job context
-      #   env:
-      #     JOB_CONTEXT: ${{ toJson(job) }}
-      #   run: echo "$JOB_CONTEXT"
-      # - name: Dump steps context
-      #   env:
-      #     STEPS_CONTEXT: ${{ toJson(steps) }}
-      #   run: echo "$STEPS_CONTEXT"
-      # - name: Dump runner context
-      #   env:
-      #     RUNNER_CONTEXT: ${{ toJson(runner) }}
-      #   run: echo "$RUNNER_CONTEXT"
-      # - name: Dump strategy context
-      #   env:
-      #     STRATEGY_CONTEXT: ${{ toJson(strategy) }}
-      #   run: echo "$STRATEGY_CONTEXT"
-      # - name: Dump matrix context
-      #   env:
-      #     MATRIX_CONTEXT: ${{ toJson(matrix) }}
-      #   run: echo "$MATRIX_CONTEXT"
+          First_Name: Mona
